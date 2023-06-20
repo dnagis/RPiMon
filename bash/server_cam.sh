@@ -13,7 +13,6 @@
 
 ARGS=$(cat) #Recuperation du message envoye par l emetteur
 
-
 if [ "$ARGS" == "paysage" ]; then
 	WIDTH=640
 	HEIGHT=480
@@ -22,7 +21,15 @@ else
 	WIDTH=480
 fi
 
-echo "script server_cam.sh args=$ARGS WIDTH=$WIDTH HEIGHT=$HEIGHT"
+echo "script /bin/server_cam.sh (repo RPiMon) args=$ARGS WIDTH=$WIDTH HEIGHT=$HEIGHT"
+
+
+PID_GST=`pidof gst-launch-1.0`
+if [ ! -z $PID_GST ]; then
+	echo "pid gst-launch-1.0: $PID_GST on le kill"
+	kill $PID_GST
+fi
+
 
 gst-launch-1.0 rpicamsrc do-timestamp=true ! video/x-h264,width=$WIDTH,height=$HEIGHT,framerate=30/1 ! h264parse ! queue ! rtph264pay config-interval=1 ! gdppay ! tcpserversink port=8888 host=0.0.0.0 & 
 
