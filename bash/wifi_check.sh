@@ -14,11 +14,12 @@
 while :
 do
 	WPA_STATE=`wpa_cli -i wlan0 status | grep wpa_state | sed 's/wpa_state=//g'`
-	echo "WPA_STATE=$WPA_STATE"
+	echo -n "WPA_STATE=$WPA_STATE"
 	if [ "$WPA_STATE" == "COMPLETED" ]; then
+		echo  " " #pour newline
 		break
 	fi
-	echo "WPA_STATE pas COMPLETED on sleep 1s"
+	echo " pas COMPLETED --> sleep 1s"
 	sleep 1
 done
 
@@ -39,11 +40,12 @@ done
 while :
 do
 	IP_ADDR=`wpa_cli -i wlan0 status | grep ip_address | sed 's/ip_address=//g'`
-	echo "IP_ADDR=$IP_ADDR"
+	echo -n "IP_ADDR=$IP_ADDR"
 	if [ ! -z `echo $IP_ADDR | grep 192.168.49` ]; then
+		echo  " " #pour newline
 		break
 	fi
-	echo "L'IP=$IP_ADDR ne contient pas 192.168.49 on sleep 1s"
+	echo " ne contient pas 192.168.49 --> sleep 1s"
 	sleep 1
 done
 
