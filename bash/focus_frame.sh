@@ -1,11 +1,13 @@
 #!/usr/bin/sh
 
-#focus_frame.sh --> côté client
+#focus_frame.sh --> côté client (focus)
 
 
 #server_cam.sh paysage ou n'importe quel autre string pour portrait
 ORIENTATION=$1
 
+#vérif aufs gst
+[[ ! -d /initrd/gst ]] && aufs gst
 
 /initrd/mnt/dev_save/packages/RPiMon/bash/wifi_check.sh
 echo $ORIENTATION | socat - TCP:192.168.49.1:8000 #server_cam.sh

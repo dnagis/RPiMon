@@ -46,6 +46,8 @@ do
 		break
 	fi
 	echo " ne contient pas 192.168.49 --> sleep 1s"
+	#Il faudrait un jour penser à faire ça ici (/usr/share/wpa_action_scripts/wpa_action_wlan0.sh l'a fait mais...)
+	#kill -USR1 `pidof udhcpc`
 	sleep 1
 done
 
