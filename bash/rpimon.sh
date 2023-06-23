@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#Script originel utilisé au tout début 2022
+
 #sysinit:
 #socat -t 10 TCP-LISTEN:4696,fork EXEC:/root/rpimon.sh &
 #envoi pour tests depuis linux:

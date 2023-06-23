@@ -9,11 +9,11 @@
 
 
 #envoi pour tests depuis linux:
-#echo paysage | socat - TCP:192.168.49.1:8000 
+#echo pa | socat - TCP:192.168.49.1:8000 
 
 ARGS=$(cat) #Recuperation du message envoye par l emetteur
 
-if [ "$ARGS" == "paysage" ]; then
+if [ "$ARGS" == "pa" ]; then
 	WIDTH=640
 	HEIGHT=480
 else
