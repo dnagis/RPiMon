@@ -1,0 +1,26 @@
+# capt_detect_pilot.sh
+côté RPi port 8001: démarre / arrête la pipeline de capt+detect
+sur le Pi à mettre dans /bin/
+
+# server_cam.sh
+côté RPi port 8000: démarre / arrête la pipeline de rpicamsrc ! ... ! tcpserversink
+sur le Pi à mettre dans /bin/
+
+# focus_frame.sh  
+côté focus: check connexion wifi RPi via wifi_check.sh, lance sur le Pi la pipeline rpicamsrc ! ... ! tcpserversink et la fait afficher
+
+# wifi_check.sh
+côté focus, cf focus_frame.sh
+
+
+
+
+
+# hello_socat_rx.sh  
+pour faire des tests bash transmission (Rx) vers un script via socat
+
+## Ci dessous: legacy: utilisés au tout début 2022 
+# rpimon.sh
+# gst_respawn.sh  
+# clean_stop.sh  
+      
