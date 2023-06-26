@@ -1,16 +1,28 @@
-# capt_detect_pilot.sh
-côté RPi port 8001: démarre / arrête la pipeline de capt+detect
-sur le Pi à mettre dans /bin/
+#rc.sysinit du RPi:
 
-# server_cam.sh
+socat -t 10 TCP-LISTEN:8000,fork EXEC:/bin/server_cam.sh &
+socat -t 10 TCP-LISTEN:8001,fork EXEC:/bin/capt_detect_pilot.sh &
+socat -t 10 TCP-LISTEN:8002,fork EXEC:/bin/scope_rpi.sh &
+
+
+
+# /bin/capt_detect_pilot.sh
+côté RPi port 8001: démarre / arrête la pipeline de capt+detect
+
+# /bin/server_cam.sh
 côté RPi port 8000: démarre / arrête la pipeline de rpicamsrc ! ... ! tcpserversink
-sur le Pi à mettre dans /bin/
 
 # focus_frame.sh  
 côté focus: check connexion wifi RPi via wifi_check.sh, lance sur le Pi la pipeline rpicamsrc ! ... ! tcpserversink et la fait afficher
 
 # wifi_check.sh
 côté focus, cf focus_frame.sh
+
+# scope_rpi.sh
+côté RPi port 8002: fetche des infos sur le déroulement du processus capt + detect
+
+# watch_scope.sh
+côté focus, appelle scope_rpi.sh pour gather info les afficher pour suivre le process
 
 
 
