@@ -19,7 +19,7 @@ CAPT_SIZE=`ls -s /root/capture.mp4 | awk '{$1=$1};1' | cut -d' ' -f1 -s`
 
 echo PID_GST=$PID_GST
 echo CAPT_SIZE=$CAPT_SIZE
-tail /root/results.txt
+tail  -n 20 /root/results.txt
 
 
 
