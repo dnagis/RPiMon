@@ -35,7 +35,9 @@ case "$CMD" in
  start)
     [[ ! -z $PID_GST ]] && kill $PID_GST
     #logger start_rpimon
-    gst-launch-1.0 -e --quiet rpicamsrc ! video/x-raw,width=$WIDTH,height=$HEIGHT,format=BGR,framerate=30/1 ! tee name=t t. ! queue ! v4l2h264enc ! 'video/x-h264,level=(string)3' ! h264parse ! mp4mux ! filesink location=/root/capture.mp4 t. ! queue ! fdsink | /root/stdin_to_detect $ORIENTATION 0.5 &
+    gst-launch-1.0 -e --quiet rpicamsrc ! video/x-raw,width=$WIDTH,height=$HEIGHT,format=BGR,framerate=30/1 ! tee name=t t. ! queue ! v4l2h264enc ! 'video/x-h264,level=(string)3' ! filesink location=/root/capture.h264 t. ! queue ! fdsink | /root/stdin_to_detect $ORIENTATION 0.5 &
+    #avec encapsulation (donc decode impossible)
+    #gst-launch-1.0 -e --quiet rpicamsrc ! video/x-raw,width=$WIDTH,height=$HEIGHT,format=BGR,framerate=30/1 ! tee name=t t. ! queue ! v4l2h264enc ! 'video/x-h264,level=(string)3' ! h264parse ! mp4mux ! filesink location=/root/capture.mp4 t. ! queue ! fdsink | /root/stdin_to_detect $ORIENTATION 0.5 &
     ;;
  stop)
     echo 'kill gst-launch-1.0 avec SIGINT' 
