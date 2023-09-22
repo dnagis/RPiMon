@@ -14,7 +14,7 @@
 
 PID_GST=`pidof gst-launch-1.0`
 #awk '{$1=$1};1' delete leading + trailing spaces
-CAPT_SIZE=`ls -s /root/capture.mp4 | awk '{$1=$1};1' | cut -d' ' -f1 -s`
+CAPT_SIZE=`ls -s /root/capture.h264 | awk '{$1=$1};1' | cut -d' ' -f1 -s`
 
 
 echo PID_GST=$PID_GST
